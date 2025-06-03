@@ -2,7 +2,9 @@ package com.carlosdev.lab5_20210535;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +24,8 @@ public class HabitosActivity extends AppCompatActivity {
 
     private Button btnNuevoHabito;
     private RecyclerView recyclerHabitos;
+    private TextView txtSinHabitos;
+
     private HabitoAdapter habitoAdapter;
     private List<Habito> listaHabitos;
     private HabitoManager habitoManager;
@@ -52,6 +56,7 @@ public class HabitosActivity extends AppCompatActivity {
     private void inicializarVistas() {
         btnNuevoHabito = findViewById(R.id.btnNuevoHabito);
         recyclerHabitos = findViewById(R.id.recyclerHabitos);
+        txtSinHabitos = findViewById(R.id.txtSinHabitos);
     }
 
     private void configurarRecyclerView() {
@@ -118,7 +123,15 @@ public class HabitosActivity extends AppCompatActivity {
         listaHabitos = habitoManager.cargarHabitos();
         habitoAdapter.actualizarHabitos(listaHabitos);
 
+        if (listaHabitos == null || listaHabitos.isEmpty()) {
+            txtSinHabitos.setVisibility(View.VISIBLE);
+            recyclerHabitos.setVisibility(View.GONE);
+        } else {
+            txtSinHabitos.setVisibility(View.GONE);
+            recyclerHabitos.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     protected void onResume() {
