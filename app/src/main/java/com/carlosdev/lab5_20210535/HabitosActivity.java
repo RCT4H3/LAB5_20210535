@@ -104,6 +104,7 @@ public class HabitosActivity extends AppCompatActivity {
         );
     }
 
+    //Se uso IA para colocar la funcionalidad de mantener presionado el botón para eliminar un hábito
     private void mostrarDialogoEliminar(int position, Habito habito) {
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar Hábito")
